@@ -32,6 +32,13 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    // Required for the Logic
+    implementation 'androidx.biometric:biometric:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
+
+    // For the overlay Layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
 
 // =========================================================

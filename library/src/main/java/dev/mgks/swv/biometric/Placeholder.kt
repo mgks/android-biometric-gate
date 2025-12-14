@@ -1,4 +1,4 @@
-package dev.mgks.swv.placeholder
+package dev.mgks.swv.biometric
 
 class Placeholder {
     fun greet(): String {
