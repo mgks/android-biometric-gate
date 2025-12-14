@@ -1,38 +1,102 @@
-# Android Library Template 📦
+# Android Biometric Gate
 
-A Golden Template for creating and publishing Android Libraries (Kotlin) with automatic JitPack and GitHub Packages support.
+[![](https://jitpack.io/v/mgks/android-biometric-gate.svg)](https://jitpack.io/#mgks/android-biometric-gate)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 How to use this template
+A secure, lifecycle-aware biometric lock screen for Android. It automatically protects sensitive content by overlaying a lock screen when your app goes into the background, and provides a bridge for WebView apps to trigger authentication from JavaScript.
 
-### 1. Clone & Rename
-1.  Click **"Use this template"** on GitHub to create a new repo (e.g., `android-biometric-gate`).
-2.  Clone your new repo.
+Extracted from the core of **[Android Smart WebView](https://github.com/mgks/Android-SmartWebView)**.
 
-### 2. Configure Identity
-Open `gradle.properties` and edit the library details:
+<img src="https://github.com/mgks/android-biometric-gate/blob/main/preview.gif?raw=true" width="200">
 
-```bash
-LIB_ARTIFACT_ID=biometric-gate
-LIB_VERSION=1.0.0
-LIB_NAME=Android Biometric Gate
-LIB_DESCRIPTION=Secure biometric auth...
-LIB_URL=https://github.com/mgks/android-biometric-gate
+## Features
+*   🔒 **Auto-Lock:** Automatically locks the Activity when moved to the background (Recents).
+*   🛡️ **Secure:** Uses `FLAG_SECURE` to prevent screenshots/previews in the Recents screen.
+*   🌐 **Hybrid Ready:** Built-in JavaScript interface (`window.Biometric`) for WebView apps.
+*   ⚡ **Lifecycle Aware:** No manual `onPause`/`onResume` calls required. Just initialize and forget.
+*   🎨 **Customizable:** Configure titles, subtitles, and fallback behavior.
+
+## Installation
+
+**Step 1. Add JitPack**
+```groovy
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
 ```
 
-### 3. Refactor Package
-1.  Open the project in Android Studio.
-2.  Go to `library/src/main/java/dev/mgks/swv/placeholder`.
-3.  Right-click `placeholder` -> **Refactor** -> **Rename**.
-4.  Rename it to your library name (e.g., `biometric`).
-5.  Android Studio will update all package references.
+**Step 2. Add Dependency**
+```groovy
+dependencies {
+    implementation 'com.github.mgks:android-biometric-gate:1.0.0'
+}
+```
 
-### 4. Write Code
-*   Add your library code in the `library` module.
-*   Add permissions/manifest entries in `library/src/main/AndroidManifest.xml`.
-*   Use the `app` module to test your library (Edit `app/src/main/java/.../MainActivity.kt`).
+## Usage
 
-### 5. Publish
-1.  Push your changes.
-2.  Create a **Release** on GitHub (tag `v1.0.0`).
-3.  The Action will auto-publish to GitHub Packages.
-4.  JitPack will auto-pickup the release.
+### 1. Basic (Native Android)
+In your `Activity` (e.g., `MainActivity.kt`), just initialize the gate. It handles the rest.
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+    private lateinit var biometricGate: SwvBiometricGate
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize. That's it. The app is now protected.
+        biometricGate = SwvBiometricGate(this)
+    }
+}
+```
+
+### 2. WebView Integration (Hybrid Apps)
+If you are building a Hybrid App, you can let your website trigger authentication (e.g., before showing a sensitive transaction).
+
+```kotlin
+// 1. Initialize
+biometricGate = SwvBiometricGate(this)
+
+// 2. Attach to WebView
+val myWebView = findViewById<WebView>(R.id.webview)
+biometricGate.integrateWithWebView(myWebView)
+```
+
+**JavaScript Usage:**
+The library injects a `window.Biometric` object.
+
+```javascript
+// Trigger the native prompt
+window.Biometric.authenticate();
+
+// Handle Success
+window.Biometric.onAuthSuccess = function() {
+    console.log("Identity Verified!");
+    // Show secret data...
+};
+
+// Handle Errors
+window.Biometric.onAuthError = function(errorMsg) {
+    console.error("Auth Failed: " + errorMsg);
+};
+```
+
+## Configuration
+You can customize the behavior using the `Config` object.
+
+```kotlin
+val config = SwvBiometricGate.Config(
+    title = "Secure App",
+    subtitle = "Verify identity to access",
+    autoLockOnBackground = true, // Set false if you only want manual JS triggers
+    allowDeviceCredential = true // Allow PIN/Pattern fallback
+)
+
+biometricGate = SwvBiometricGate(this, config)
+```
+
+## License
+MIT License
