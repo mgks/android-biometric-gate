@@ -34,7 +34,7 @@ dependencies {
 
     // BIOMETRIC SPECIFIC
     implementation 'androidx.biometric:biometric:1.1.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.0' // Updated for Java 17
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
 

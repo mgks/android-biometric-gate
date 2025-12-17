@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="75sp"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
@@ -10,16 +11,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Biometric Gate Sample"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Minimize app to test Auto-Lock.\n2. Use WebView button below to test JS."
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:text="1. Minimize app to test Auto-Lock.\n2. Use WebView button below to test JS." />
 
     <!-- The WebView to test JavaScript triggers -->
     <WebView
@@ -35,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Test Manual Lock (Native)"
-        android:backgroundTint="#FF5722"/>
+        android:backgroundTint="#FF5722"
+        android:text="Test Manual Lock (Native)" />
 
 </LinearLayout>
