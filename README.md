@@ -10,11 +10,11 @@ Extracted from the core of **[Android Smart WebView](https://github.com/mgks/And
 <img src="https://github.com/mgks/android-biometric-gate/blob/main/preview.gif?raw=true" width="200">
 
 ## Features
-*   🔒 **Auto-Lock:** Automatically locks the Activity when moved to the background (Recents).
-*   🛡️ **Secure:** Uses `FLAG_SECURE` to prevent screenshots/previews in the Recents screen.
-*   🌐 **Hybrid Ready:** Built-in JavaScript interface (`window.Biometric`) for WebView apps.
-*   ⚡ **Lifecycle Aware:** No manual `onPause`/`onResume` calls required. Just initialize and forget.
-*   🎨 **Customizable:** Configure titles, subtitles, and fallback behavior.
+*   **Auto-Lock:** Automatically locks the Activity when moved to the background (Recents).
+*   **Secure:** Uses `FLAG_SECURE` to prevent screenshots/previews in the Recents screen.
+*   **Hybrid Ready:** Built-in JavaScript interface (`window.Biometric`) for WebView apps.
+*   **Lifecycle Aware:** No manual `onPause`/`onResume` calls required. Just initialize and forget.
+*   **Customizable:** Configure titles, subtitles, and fallback behavior.
 
 ## Installation
 
@@ -99,4 +99,8 @@ biometricGate = SwvBiometricGate(this, config)
 ```
 
 ## License
-MIT License
+MIT
+
+> **{ github.com/mgks }**
+> 
+> ![Website Badge](https://img.shields.io/badge/Visit-mgks.dev-blue?style=flat&link=https%3A%2F%2Fmgks.dev) ![Sponsor Badge](https://img.shields.io/badge/%20%20Become%20a%20Sponsor%20%20-red?style=flat&logo=github&link=https%3A%2F%2Fgithub.com%2Fsponsors%2Fmgks)
